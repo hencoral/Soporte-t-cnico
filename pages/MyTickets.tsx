@@ -8,18 +8,18 @@ const MyTickets: React.FC<{ user: UserProfile, onLogout: () => void }> = ({ user
   const companyName = typeof user.company === 'string' ? user.company : user.company.companyName;
 
   return (
-    <div className="flex flex-col h-screen overflow-hidden bg-background-light dark:bg-background-dark">
+    <div className="flex flex-col h-screen overflow-hidden bg-background-light dark:bg-background-dark relative">
       {/* Header */}
       <header className="px-6 pt-6 pb-4 bg-white dark:bg-background-dark sticky top-0 z-10 border-b border-gray-50 dark:border-gray-900">
         <div className="flex justify-between items-start mb-4">
           <div className="flex flex-col">
-            <h1 className="text-2xl font-black dark:text-white tracking-tight">Mis Tickets</h1>
-            <p className="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-tighter">
-              {companyName} <span className="mx-1 opacity-30">|</span> {user.name}
+            <h1 className="text-2xl font-black dark:text-white tracking-tight leading-none mb-1">Mis Tickets</h1>
+            <p className="text-[9px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-tighter">
+              {companyName} <span className="mx-0.5 opacity-30">|</span> {user.name}
             </p>
           </div>
-          <button onClick={onLogout} className="p-2.5 rounded-2xl bg-gray-50 dark:bg-surface-dark hover:text-red-500 transition-colors">
-            <span className="material-symbols-outlined text-sm">logout</span>
+          <button onClick={onLogout} className="p-2 rounded-xl bg-gray-50 dark:bg-surface-dark hover:text-red-500 transition-colors">
+            <span className="material-symbols-outlined text-[20px]">logout</span>
           </button>
         </div>
         
@@ -54,32 +54,36 @@ const MyTickets: React.FC<{ user: UserProfile, onLogout: () => void }> = ({ user
             priority="Media"
             onClick={() => navigate('/ticket-detail/3982')}
           />
-          <div className="p-8 text-center opacity-30">
-            <span className="material-symbols-outlined text-4xl mb-2">inventory_2</span>
-            <p className="text-xs font-bold uppercase tracking-widest">No hay más tickets</p>
+          <div className="p-12 text-center opacity-30">
+            <span className="material-symbols-outlined text-5xl mb-3">inventory_2</span>
+            <p className="text-[10px] font-black uppercase tracking-[0.2em]">Fin de la lista</p>
           </div>
         </div>
       </main>
 
-      {/* Nav */}
-      <nav className="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white/90 dark:bg-background-dark/90 backdrop-blur-xl border-t border-gray-100 dark:border-gray-800 p-4 flex justify-around items-center z-20">
-        <button className="flex flex-col items-center gap-1 text-primary">
-          <span className="material-symbols-outlined text-2xl">confirmation_number</span>
-          <span className="text-[10px] font-black uppercase tracking-tighter">Tickets</span>
+      {/* Botón flotante */}
+      <Link 
+        to="/new-ticket" 
+        className="absolute bottom-24 right-6 w-14 h-14 bg-primary text-white rounded-2xl flex items-center justify-center shadow-2xl shadow-primary/40 hover:scale-105 active:scale-95 transition-all z-30 group"
+      >
+        <span className="text-3xl font-light leading-none group-hover:rotate-90 transition-transform duration-300">+</span>
+      </Link>
+
+      {/* Nav con Grid 3 columnas fija - Asegurando espacio y renderizado */}
+      <nav className="absolute bottom-0 left-0 right-0 bg-white/95 dark:bg-background-dark/95 backdrop-blur-md border-t border-gray-100 dark:border-gray-800 grid grid-cols-3 z-40 h-20 px-2">
+        <button className="flex flex-col items-center justify-center gap-1 text-primary">
+          <span className="material-symbols-outlined">confirmation_number</span>
+          <span className="text-[9px] font-black uppercase tracking-tighter">Tickets</span>
         </button>
-        <Link to="/assistant" className="flex flex-col items-center gap-1 text-gray-400 hover:text-primary transition-colors">
-          <span className="material-symbols-outlined text-2xl">chat_bubble</span>
-          <span className="text-[10px] font-bold uppercase tracking-tighter">Bot</span>
+        <Link to="/assistant" className="flex flex-col items-center justify-center gap-1 text-gray-400 hover:text-primary transition-colors">
+          <span className="material-symbols-outlined">chat_bubble</span>
+          <span className="text-[9px] font-bold uppercase tracking-tighter">Bot</span>
         </Link>
-        <Link to="/tech-dashboard" className="flex flex-col items-center gap-1 text-gray-400 hover:text-primary transition-colors">
-          <span className="material-symbols-outlined text-2xl">dashboard</span>
-          <span className="text-[10px] font-bold uppercase tracking-tighter">Panel</span>
+        <Link to="/tech-dashboard" className="flex flex-col items-center justify-center gap-1 text-gray-400 hover:text-primary transition-colors">
+          <span className="material-symbols-outlined">dashboard</span>
+          <span className="text-[9px] font-bold uppercase tracking-tighter">Panel</span>
         </Link>
       </nav>
-
-      <Link to="/new-ticket" className="fixed bottom-24 right-6 w-14 h-14 bg-primary text-white rounded-2xl flex items-center justify-center shadow-2xl shadow-primary/40 hover:scale-105 active:scale-95 transition-all z-30 group">
-        <span className="material-symbols-outlined text-3xl group-hover:rotate-90 transition-transform">add</span>
-      </Link>
     </div>
   );
 };

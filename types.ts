@@ -11,7 +11,7 @@ export interface UserProfile {
     department: string;
     officeLocation: string;
     workEmail: string;
-    employeeId: string;
+    phone: string;
   };
 }
 

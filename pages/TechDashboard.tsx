@@ -6,13 +6,13 @@ const TechDashboard: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col h-screen bg-gray-50 dark:bg-background-dark">
+    <div className="flex flex-col h-screen bg-gray-50 dark:bg-background-dark relative">
       <header className="p-6 bg-white dark:bg-background-dark border-b dark:border-gray-800 sticky top-0 z-10">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-black dark:text-white">Panel <span className="text-primary">NeuroBOT</span></h1>
           <div className="flex gap-2">
             <button className="p-2 bg-gray-100 dark:bg-surface-dark rounded-full">
-              <span className="material-symbols-outlined dark:text-white">notifications</span>
+              <span className="material-symbols-outlined dark:text-white text-sm">notifications</span>
             </button>
           </div>
         </div>
@@ -24,7 +24,7 @@ const TechDashboard: React.FC = () => {
         </div>
       </header>
 
-      <main className="flex-1 overflow-y-auto p-6 space-y-6 pb-32">
+      <main className="flex-1 overflow-y-auto p-6 space-y-6 pb-32 no-scrollbar">
         <section>
           <div className="flex justify-between items-center mb-4">
             <h2 className="font-bold dark:text-white uppercase text-xs tracking-widest">Colas Críticas</h2>
@@ -65,18 +65,19 @@ const TechDashboard: React.FC = () => {
         </section>
       </main>
 
-      <nav className="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white/80 dark:bg-background-dark/80 backdrop-blur-lg border-t border-gray-100 dark:border-gray-800 p-4 flex justify-around items-center z-20">
-        <Link to="/" className="flex flex-col items-center gap-1 text-gray-400">
+      {/* Nav con Grid 3 columnas fija */}
+      <nav className="absolute bottom-0 left-0 right-0 bg-white/95 dark:bg-background-dark/95 backdrop-blur-md border-t border-gray-100 dark:border-gray-800 py-3 grid grid-cols-3 z-40 h-16">
+        <Link to="/" className="flex flex-col items-center justify-center gap-1 text-gray-400 hover:text-primary transition-colors">
           <span className="material-symbols-outlined">confirmation_number</span>
-          <span className="text-[10px] font-medium">Tickets</span>
+          <span className="text-[9px] font-bold uppercase tracking-tighter">Tickets</span>
         </Link>
-        <Link to="/assistant" className="flex flex-col items-center gap-1 text-gray-400">
+        <Link to="/assistant" className="flex flex-col items-center justify-center gap-1 text-gray-400 hover:text-primary transition-colors">
           <span className="material-symbols-outlined">chat_bubble</span>
-          <span className="text-[10px] font-medium">Asistente</span>
+          <span className="text-[9px] font-bold uppercase tracking-tighter">Bot</span>
         </Link>
-        <button className="flex flex-col items-center gap-1 text-primary">
+        <button className="flex flex-col items-center justify-center gap-1 text-primary">
           <span className="material-symbols-outlined">dashboard</span>
-          <span className="text-[10px] font-bold">Admin</span>
+          <span className="text-[9px] font-black uppercase tracking-tighter">Panel</span>
         </button>
       </nav>
     </div>

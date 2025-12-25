@@ -47,6 +47,29 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
     }, 1000);
   };
 
+  const handleDemoLogin = () => {
+    setLoading(true);
+    const mockUser: UserProfile = {
+      name: "Usuario Demo",
+      email: "demo@neurobot.com",
+      role: "Usuario",
+      company: {
+        companyName: "NeuroBOT Corp",
+        taxId: "900.123.456-7",
+        industry: "Tecnología",
+        employeeCount: "100-500",
+        department: "Innovación",
+        officeLocation: "Sede Principal",
+        workEmail: "demo@neurobot.com",
+        phone: "+57 300 000 0000"
+      }
+    };
+    
+    setTimeout(() => {
+      onLogin(mockUser);
+    }, 800);
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-background-dark p-8 animate-fade">
       <div className="flex-1 flex flex-col justify-center">
@@ -60,7 +83,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="text-[10px] font-black text-gray-400 uppercase tracking-wider mb-2 block">Email Corporativo</label>
+            <label className="text-[10px] font-black text-gray-400 uppercase tracking-wider mb-2 block">Email</label>
             <input required type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full p-4 rounded-2xl bg-gray-50 dark:bg-surface-dark border-none dark:text-white focus:ring-2 focus:ring-primary outline-none" placeholder="nombre@empresa.com" />
           </div>
           <div>
@@ -69,9 +92,23 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
           </div>
 
           <button disabled={loading} type="submit" className="w-full py-4 bg-primary text-white font-black rounded-2xl shadow-xl shadow-primary/30 flex items-center justify-center">
-            {loading ? "Sincronizando..." : "Ingresar"}
+            {loading ? "Iniciando..." : "Ingresar"}
           </button>
         </form>
+
+        <div className="relative my-8">
+          <div className="absolute inset-0 flex items-center"><div className="w-full border-t dark:border-gray-800"></div></div>
+          <div className="relative flex justify-center text-xs uppercase"><span className="bg-white dark:bg-background-dark px-2 text-gray-500 font-bold">o también</span></div>
+        </div>
+
+        <button 
+          onClick={handleDemoLogin}
+          disabled={loading}
+          className="w-full py-4 bg-gray-100 dark:bg-surface-dark dark:text-white font-black rounded-2xl border-2 border-transparent hover:border-primary/30 transition-all flex items-center justify-center gap-2"
+        >
+          <span className="material-symbols-outlined">rocket_launch</span>
+          Acceso Rápido (Demo)
+        </button>
       </div>
 
       <div className="mt-8 text-center pb-4">
