@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet"/>
-    <!-- URL de Material Symbols con todos los parámetros de variación -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -23,7 +22,10 @@
                         "surface-dark": "#161b22",
                         "card-dark": "#1c242e",
                     },
-                    fontFamily: { "display": ["Inter", "sans-serif"] }
+                    fontFamily: { "display": ["Inter", "sans-serif"] },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
                 }
             }
         }
@@ -33,7 +35,6 @@
         #root { min-height: 100vh; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         
-        /* FIX CRÍTICO PARA ICONOS */
         .material-symbols-outlined {
             font-family: 'Material Symbols Outlined' !important;
             font-weight: normal;
@@ -49,8 +50,6 @@
             -webkit-font-feature-settings: 'liga';
             -webkit-font-smoothing: antialiased;
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-            
-            /* Seguridad contra carga lenta: el texto se oculta si no luga */
             width: 24px;
             height: 24px;
             overflow: hidden;
@@ -58,8 +57,17 @@
             user-select: none;
         }
 
-        /* Asegurar que el contenedor móvil no se rompa */
         nav { max-width: 100%; }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .animate-shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
     </style>
     <script type="importmap">
 {

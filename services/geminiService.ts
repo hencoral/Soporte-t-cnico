@@ -19,6 +19,27 @@ export class GeminiService {
     return response.text;
   }
 
+  static async transcribeAudio(audioBase64: string, mimeType: string = 'audio/webm') {
+    const ai = this.getClient();
+    const response = await ai.models.generateContent({
+      model: 'gemini-3-flash-preview',
+      contents: {
+        parts: [
+          {
+            inlineData: {
+              data: audioBase64,
+              mimeType: mimeType
+            }
+          },
+          {
+            text: "Transcribe esta nota de voz de soporte técnico de forma precisa. Si hay términos técnicos, asegúrate de escribirlos correctamente. Devuelve solo la transcripción, sin comentarios adicionales."
+          }
+        ]
+      }
+    });
+    return response.text;
+  }
+
   static async generateErrorVideo(imageB64: string, prompt: string) {
     const ai = this.getClient();
     
