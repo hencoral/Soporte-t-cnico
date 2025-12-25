@@ -1,0 +1,8 @@
+{
+  "name": "NeuroBOT - Soporte Inteligente",
+  "description": "Una plataforma avanzada de soporte técnico que utiliza IA para la gestión de tickets, asistencia virtual y generación de video predictivo para la visualización de errores.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
